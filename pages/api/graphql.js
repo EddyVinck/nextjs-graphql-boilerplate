@@ -44,8 +44,6 @@ const apolloServer = new ApolloServer({
     signin: AuthenticationDirective,
   },
   context: async ({ req, res }) => {
-    console.log(`🍪 context function 🍪, db: ${!!databaseConnection}`);
-
     const context = { req, res, db: null, user: null };
     context.db = databaseConnection;
     const user = await getUserFromReq(req);
