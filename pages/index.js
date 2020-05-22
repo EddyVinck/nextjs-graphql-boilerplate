@@ -1,6 +1,8 @@
-import Head from 'next/head'
+import Head from "next/head";
+import { useUser } from "../lib/hooks";
 
 export default function Home() {
+  const user = useUser();
   return (
     <div className="container">
       <Head>
@@ -12,6 +14,12 @@ export default function Home() {
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        {user ? (
+          <p>Currently logged in as: {JSON.stringify(user)}</p>
+        ) : (
+          <p>not logged in!</p>
+        )}
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
@@ -54,7 +62,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
         </a>
       </footer>
@@ -205,5 +213,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
