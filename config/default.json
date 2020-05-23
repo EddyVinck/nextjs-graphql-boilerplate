@@ -3,8 +3,8 @@
   "mongoDb": {
     "hostname": "localhost",
     "port": 27017,
-    "dbName": "___svelteapp"
+    "dbName": "___nextapp"
   },
   "jwtSecret": "burrito",
-  "sessionSecret": "taco"
+  "sessionSecret": "taco_recipe_meat_charro-beans_mexican-rice_tortillas_toppings"
 }

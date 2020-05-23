@@ -6,13 +6,12 @@ import { connect, dbUrl } from "../../server/db";
 import { createSampleDataIfDbEmpty } from "../../server/db/utils/createSampleData";
 import _config from "config";
 import Cors from "micro-cors";
-import mongoose from "mongoose";
 import { getUserFromReq } from "../../server/utils/auth";
+import { schema } from "../../lib/apollo/schema";
 
 const { PORT, NODE_ENV } = process.env;
 const IS_DEV = NODE_ENV === "development";
 const IS_PROD = NODE_ENV === "production";
-const SESSION_SECRET = _config.get("sessionSecret");
 const MONGOOSE_STATE_CONNECTED = 1;
 
 // Database
@@ -38,18 +37,17 @@ createDatabaseConnection();
 
 // GraphQL
 const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
   schemaDirectives: {
     signin: AuthenticationDirective,
   },
   context: async ({ req, res }) => {
-    const context = { req, res, db: null, user: null };
-    context.db = databaseConnection;
+    const ctx = { req, res, db: null, user: null };
+    ctx.db = databaseConnection;
     const user = await getUserFromReq(req);
-    context.user = user;
+    ctx.user = user;
 
-    return context;
+    return ctx;
   },
 });
 
@@ -59,10 +57,11 @@ export const config = {
   },
 };
 
-const cors = Cors({
-  allowMethods: ["GET", "POST", "OPTIONS"],
-});
+// const cors = Cors({
+//   allowMethods: ["GET", "POST", "OPTIONS"],
+// });
 
 const handler = apolloServer.createHandler({ path: "/api/graphql" });
 
-export default cors(handler);
+// export default cors(handler);
+export default handler;

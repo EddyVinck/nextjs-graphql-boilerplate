@@ -1,8 +1,21 @@
 import Head from "next/head";
 import { useUser } from "../lib/hooks";
+import { withApollo } from "../lib/apollo/client";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 
-export default function Home() {
+const PostQuery = gql`
+  {
+    posts {
+      title
+    }
+  }
+`;
+
+function Home() {
   const user = useUser();
+  const { data, loading } = useQuery(PostQuery);
+
   return (
     <div className="container">
       <Head>
@@ -19,6 +32,12 @@ export default function Home() {
           <p>Currently logged in as: {JSON.stringify(user)}</p>
         ) : (
           <p>not logged in!</p>
+        )}
+
+        {!loading && data ? (
+          <pre>{JSON.stringify(data, 0, 2)}</pre>
+        ) : (
+          <p>Loading posts! ⌛</p>
         )}
 
         <p className="description">
@@ -215,3 +234,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default withApollo(Home);
