@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const deprecationOptions = {
   useNewUrlParser: true,
@@ -6,9 +6,11 @@ const deprecationOptions = {
   useCreateIndex: true,
 };
 
-export const connect = (url, options) => {
+const connect = (url, options) => {
   return mongoose.connect(url, {
     ...deprecationOptions,
     ...options,
   });
 };
+
+module.exports = { connect };

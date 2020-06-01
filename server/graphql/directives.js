@@ -1,10 +1,10 @@
-import {
+const {
   SchemaDirectiveVisitor,
   AuthenticationError,
-} from "apollo-server-micro";
-import { defaultFieldResolver } from "graphql";
+} = require("apollo-server-express");
+const { defaultFieldResolver } = require("graphql");
 
-export class AuthenticationDirective extends SchemaDirectiveVisitor {
+class AuthenticationDirective extends SchemaDirectiveVisitor {
   visitFieldDefinition(field) {
     const { resolve = defaultFieldResolver } = field;
     field.resolve = async (root, args, ctx, info) => {
@@ -15,3 +15,5 @@ export class AuthenticationDirective extends SchemaDirectiveVisitor {
     };
   }
 }
+
+module.exports = { AuthenticationDirective };

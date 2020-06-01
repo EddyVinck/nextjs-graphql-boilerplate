@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useUser } from "../lib/hooks";
 
 export const Header = () => {
-  const user = useUser();
+  const user = null; // = useUser();
 
   return (
     <header>

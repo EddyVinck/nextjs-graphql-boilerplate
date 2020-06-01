@@ -1,6 +1,6 @@
-import gql from "graphql-tag";
+const gql = require("graphql-tag");
 
-export const typeDefs = gql`
+const typeDefs = gql`
   directive @signin on FIELD_DEFINITION
 
   type Query {
@@ -86,3 +86,5 @@ export const typeDefs = gql`
     slug: String # can be generated on Mongoose pre-validate
   }
 `;
+
+module.exports = { typeDefs };

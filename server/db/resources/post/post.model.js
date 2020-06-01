@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import slug from "slug";
-import { returnVirtuals } from "../../utils/returnVirtuals";
+const mongoose = require("mongoose");
+const slug = require("slug");
+const { returnVirtuals } = require("../../utils/returnVirtuals");
 
 const postSchema = new mongoose.Schema(
   {
@@ -68,4 +68,6 @@ postSchema.index(
 returnVirtuals(postSchema);
 
 // Fix errors for reinitialized models
-export const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
+
+module.exports = { Post };

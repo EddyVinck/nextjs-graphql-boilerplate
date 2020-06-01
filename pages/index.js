@@ -1,5 +1,4 @@
 import Head from "next/head";
-import { useUser } from "../lib/hooks";
 import { withApollo } from "../lib/apollo/client";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
@@ -13,7 +12,6 @@ const PostQuery = gql`
 `;
 
 function Home() {
-  const user = useUser();
   const { data, loading } = useQuery(PostQuery);
 
   return (
@@ -27,12 +25,6 @@ function Home() {
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
-        {user ? (
-          <p>Currently logged in as: {JSON.stringify(user)}</p>
-        ) : (
-          <p>not logged in!</p>
-        )}
 
         {!loading && data ? (
           <pre>{JSON.stringify(data, 0, 2)}</pre>

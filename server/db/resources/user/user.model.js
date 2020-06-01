@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import { returnVirtuals } from "../../utils/returnVirtuals";
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const { returnVirtuals } = require("../../utils/returnVirtuals");
 
 const userSchema = new mongoose.Schema(
   {
@@ -96,4 +96,6 @@ userSchema.methods.checkPassword = function (enteredPassword) {
 returnVirtuals(userSchema);
 
 // Fix errors for reinitialized models
-export const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
+module.exports = { User };

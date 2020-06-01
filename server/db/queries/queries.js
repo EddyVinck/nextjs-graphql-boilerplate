@@ -1,16 +1,15 @@
-import { Post } from "../resources/post/post.model";
-import { User } from "../resources/user/user.model";
+const { Post } = require("../resources/post/post.model");
 
 const postByTitle = (title) => {
   return Post.findOne({ title }).exec();
 };
 
 // skip and limit are used for pagination
-export const postsForAuthor = (userId, skip = 0, limit = 10) => {
+const postsForAuthor = (userId, skip = 0, limit = 10) => {
   return Post.find({ author: userId }).skip(skip).limit(limit).exec();
 };
 
-export const getAuthorFromPost = async (postId) => {
+const getAuthorFromPost = async (postId) => {
   const match = await Post.findById(postId)
     .populate("author")
     .select("author")
@@ -35,3 +34,5 @@ const postByContentLength = (maxContentLength, minContentLength) => {
     },
   }).exec();
 };
+
+module.exports = { postsForAuthor, getAuthorFromPost };

@@ -1,5 +1,5 @@
-import { Post } from "../resources/post/post.model";
-import { User } from "../resources/user/user.model";
+const { Post } = require("../resources/post/post.model");
+const { User } = require("../resources/user/user.model");
 
 const sampleUser = {
   email: "user@svelte.dev",
@@ -79,7 +79,7 @@ const usersFoundMessage =
   '⭐ You can log in with "user@svelte.dev" or "admin@svelte.dev". Their passwords are "password".';
 
 // ! Only run this in development and when the database is connected !
-export async function createSampleDataIfDbEmpty() {
+async function createSampleDataIfDbEmpty() {
   try {
     console.log("🔎 Checking if database empty...");
     let sampleAccounts = await getSampleUsers();
@@ -122,3 +122,5 @@ export async function createSampleDataIfDbEmpty() {
     );
   }
 }
+
+module.exports = { createSampleDataIfDbEmpty };

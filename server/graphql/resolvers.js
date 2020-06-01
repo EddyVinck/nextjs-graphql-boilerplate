@@ -1,10 +1,10 @@
-import { AuthenticationError } from "apollo-server-micro";
-import { Post } from "../db/resources/post/post.model";
-import { postsForAuthor, getAuthorFromPost } from "../db/queries/queries";
-import { User } from "../db/resources/user/user.model";
-import { createToken } from "../utils/auth";
+const { AuthenticationError } = require("apollo-server-express");
+const { Post } = require("../db/resources/post/post.model");
+const { postsForAuthor, getAuthorFromPost } = require("../db/queries/queries");
+const { User } = require("../db/resources/user/user.model");
+const { createToken } = require("../utils/auth");
 
-export const resolvers = {
+const resolvers = {
   Query: {
     borat: (_root, _args, _ctx, _info) => {
       return {
@@ -107,3 +107,5 @@ export const resolvers = {
     },
   },
 };
+
+module.exports = { resolvers };

@@ -1,7 +1,7 @@
-import { useUser } from "../lib/hooks";
+// import { useUser } from "../lib/hooks";
 
 const Profile = () => {
-  const user = useUser({ redirectTo: "/login" });
+  // const user = useUser({ redirectTo: "/login" });
 
   return (
     <div>

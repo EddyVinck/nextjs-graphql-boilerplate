@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Router from "next/router";
-import { useUser } from "../lib/hooks";
+// import { useUser } from "../lib/hooks";
 import { Form } from "../components/form";
 
 const Login = () => {
-  useUser({ redirectTo: "/", redirectIfFound: true });
+  // useUser({ redirectTo: "/", redirectIfFound: true });
 
   const [errorMsg, setErrorMsg] = useState("");
 
