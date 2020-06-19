@@ -1,0 +1,10 @@
+{
+  "port": 3000,
+  "mongoDb": {
+    "hostname": "localhost",
+    "port": 27017,
+    "dbName": "___nextapp"
+  },
+  "jwtSecret": "burrito",
+  "sessionSecret": "taco_recipe_meat_charro-beans_mexican-rice_tortillas_toppings"
+}
