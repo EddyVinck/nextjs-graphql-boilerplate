@@ -37,6 +37,13 @@ const resolvers = {
     },
     posts: async () => {
       const posts = await Post.find({}).exec();
+
+      /**
+       * TODO:
+       * SSR is working so long as the data doesn't come from the database
+       * If posts is an empty array then the data is rendered on the server
+       * like it should.
+       */
       return posts;
     },
   },
